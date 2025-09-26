@@ -10,6 +10,7 @@ package com.mycompany.trabalho01poo;
  */
 public class Player extends Character{
     public Player() {
+        //System.out.println(this.humor);
         try {
             for(int i = 0; i<3; i++) {
             System.out.printf("%n                                                                         %n" +
@@ -86,7 +87,9 @@ public class Player extends Character{
 "                                                                          %n" +
 "                                                                          ");
         super.getRaca();
-        System.out.printf("%nParabens, você ganhou um(a) %s%n",super.raca);
+        System.out.printf("%n>`,`,`,`,`,`,`,`,`,`.´,´,´,´,´,´,´,´,´<%n"
+                + ": Parabéns, você ganhou um(a) %s!!%n"
+                + ">`,`,`,`,`,`,`,`,`,`.´,´,´,´,´,´,´,´,´<%n",super.raca);
         
     }
         
