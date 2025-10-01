@@ -13,7 +13,7 @@ import java.util.ArrayList;
 public class Character {
 
     String[] insetos = {"Besouro", "Abelha", "Borboleta", "Aranha"};
-    String[] humorList = {"bom", "Médio", "Ruim", "Muito Ruim"};
+    String[] humorList = {"Bem", "Médio", "Ruim", "Muito Ruim"};
     String raca;
     String name;
     int maxHealth;
@@ -27,7 +27,7 @@ public class Character {
 
     }
 
-    protected String getRaca() {
+    protected String setRaca() {
         int numSortido = (int) (Math.random() * insetos.length);
         this.raca = insetos[numSortido];
         switch (numSortido) {
@@ -58,9 +58,6 @@ public class Character {
     }
     
     protected String setHumor(Comida alimento) {
-        
-        
-        
         if (this.health >= this.maxHealth * 0.75 & this.health <= this.maxHealth) {
             this.humor = humorList[0];
         }
