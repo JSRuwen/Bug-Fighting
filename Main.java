@@ -11,6 +11,7 @@ import java.util.ArrayList;
  * @author alunodev10
  */
 public class Main {
+
     /* o jogo vai ser um pokemon de insetos, é possível batalhar, curar o inseto aliado e divertir-lo
         -criar a classe "Character" e instanciar o pet e o oponente como herdeiros de character
             -criar funçãos de humor e seus efeitos no personagem
@@ -18,7 +19,7 @@ public class Main {
         -criar a classe de alimento
         -criar o sistema de batalha
      */
-    public static void menu(Scanner s, Player p) {
+    public static void menu(Scanner s, Player p, Character e) {
         String valor;
         System.out.printf(
                 " %n"
@@ -53,25 +54,16 @@ public class Main {
         );
         valor = s.next();
         if (valor.equalsIgnoreCase("Batalhar") || valor.equalsIgnoreCase("b")) {
-            System.out.println("oi");
+            Batalha.Batalha(p, e);
         } else if (valor.equalsIgnoreCase("Status") || valor.equalsIgnoreCase("s")) {
             p.getPlayerStatus();
         } else if (valor.equalsIgnoreCase("x") || valor.equalsIgnoreCase("sair")) {
-           
+
         }
     }
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        Player player;
-        ArrayList<Character> inimigos = new ArrayList<>();
-        Character inimigo1 = new Character();
-        Character inimigo2 = new Character();
-        Character inimigo3 = new Character();
-
-        inimigos.add(inimigo1);
-        inimigos.add(inimigo2);
-        inimigos.add(inimigo3);
 
         System.out.printf(" ______________________________________________________ %n"
                 + ":                                                      :%n"
@@ -82,9 +74,18 @@ public class Main {
                 + "     %n"
                 + "> ");
         String valor = scanner.next();
+        
         if (valor.equalsIgnoreCase("Iniciar")) {
-            player = new Player();
-            Main.menu(scanner, player);
+            Player player = new Player();
+            ArrayList<Character> inimigos = new ArrayList<>();
+            Character inimigo1 = new Character();
+            Character inimigo2 = new Character();
+            Character inimigo3 = new Character();
+
+            inimigos.add(inimigo1);
+            inimigos.add(inimigo2);
+            inimigos.add(inimigo3);
+            Main.menu(scanner, player, inimigos.getFirst());
 
         }
 
