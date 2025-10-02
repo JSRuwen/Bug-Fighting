@@ -58,7 +58,7 @@ public class Main {
         } else if (valor.equalsIgnoreCase("Status") || valor.equalsIgnoreCase("s")) {
             p.getPlayerStatus();
         } else if (valor.equalsIgnoreCase("x") || valor.equalsIgnoreCase("sair")) {
-
+            return;
         }
     }
 
@@ -88,12 +88,27 @@ public class Main {
             //System.out.println("a: " + inimigos.size());
 
             while (true) {
-                for (int i = 0; i < inimigos.size(); i++) {
-                    //System.out.println("a: " + inimigos.size());
-                    Main.menu(scanner, player, inimigos.get(0));
-                    //System.out.println("a: " + inimigos.size());
+                if (inimigos.get(0).health <= 0) {
                     inimigos.remove(0);
                 }
+                if (player.health <= 0 & !player.bolsa.isEmpty()) {
+                    System.out.printf("%n:     Você prescisa curar seu pet, se não o jogo irar acabar!    ");
+                } else if (player.health <= 0) {
+                    System.out.printf(":     Fim de Jogo!    ");
+                    break;
+                }
+                if (inimigos.isEmpty()) {
+                    System.out.printf(
+                              "%n$$$XXXXXXXxxxxxxx=======+++++++;;;;;;;:::::::.......%n"
+                            + ":                                %n"
+                            + ":                 Você venceu!!! %n"
+                            + ":                                %n"
+                            + "$$$XXXXXXXxxxxxxx=======+++++++;;;;;;;:::::::.......%n");
+                    break;
+                } else {
+                    Main.menu(scanner, player, inimigos.get(0));
+                }
+
             }
         }
 

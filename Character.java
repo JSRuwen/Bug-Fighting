@@ -16,7 +16,6 @@ public class Character {
     String[] insetos = {"Besouro", "Abelha", "Borboleta", "Aranha"};
     String[] humorList = {"Bem", "Médio", "Ruim", "Muito Ruim"};
     String raca;
-    String name;
     int maxHealth = 0;
     int health = 0;
     int damage = 0;
@@ -28,7 +27,7 @@ public class Character {
                 this.sprite.add(
                         "  !____!\n"
                         + "  (o  o)\n"
-                        + " \\.'YY'./\n"
+                        + " \\.'\\/'./\n"
                         + "-:  ::  :-\n"
                         + "/'..''..'\\"
                 );
@@ -95,7 +94,7 @@ public class Character {
                         "    |\n"
                         + "  / | \\\n"
                         + "\\_\\(_)/_/\n"
-                        + " _//\"\\\\_  Max\n"
+                        + " _//\"\\\\_ \n"
                         + "  /   \\");
                 this.sprite.add("           ____                      ,\n"
                         + "          /---.'.__             ____//\n"
@@ -123,19 +122,19 @@ public class Character {
         if (this.raca.equalsIgnoreCase("besouro")) {
             this.maxHealth = 35;
             this.health = this.maxHealth;
-            this.damage = 2;
+            this.damage = 3;
         } else if (this.raca.equalsIgnoreCase("abelha")) {
-            this.maxHealth = 15;
+            this.maxHealth = 12;
             this.health = this.maxHealth;
-            this.damage = 8;
+            this.damage = 6;
         } else if (this.raca.equalsIgnoreCase("borboleta")) {
-            this.maxHealth = 20;
+            this.maxHealth = 15;
             this.health = this.maxHealth;
             this.damage = 5;
         } else if (this.raca.equalsIgnoreCase("aranha")) {
-            this.maxHealth = 30;
+            this.maxHealth = 25;
             this.health = this.maxHealth;
-            this.damage = 3;
+            this.damage = 4;
         }
 
         return this;
@@ -157,6 +156,7 @@ public class Character {
     }
 
     protected int givingDamage(Character enemy) {
+        System.out.printf(":    %s Atacou!!     +%d dmg%n",this.raca,this.damage);
         enemy.gettingHurt(this.damage);
         return this.damage;
     }
@@ -166,17 +166,6 @@ public class Character {
         return this.health;
     }
 
-    protected String setHumor(Comida alimento) {
-        if (this.health >= this.maxHealth * 0.75 & this.health <= this.maxHealth) {
-            this.humor = humorList[0];
-        } else if (this.health <= this.maxHealth * 0.75 & this.health >= this.maxHealth * 0.66) {
-            this.humor = humorList[1];
-        } else if (this.health >= this.maxHealth * 0.4 & this.health <= this.maxHealth * 0.66) {
-            this.humor = humorList[2];
-        } else if (this.health > 0 & this.health <= this.maxHealth * 0.4) {
-            this.humor = humorList[3];
-        }
-        return this.humor;
-    }
+
 
 }

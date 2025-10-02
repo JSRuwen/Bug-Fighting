@@ -26,7 +26,7 @@ public class Batalha {
                     + " _______________________________________________________ %n"
                     + ":  digite sua proxima ação!                             :%n"
                     + ":                                                       :%n"
-                    + ":        [a]Atacar : [s]Especial : [x]Sair              :%n"
+                    + ":    [a]Atacar : [s]Especial : [c] Comida : [x]Sair     :%n"
                     + ":                                                       :%n"
                     + " ¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯ %n"
                     + "> ", e.sprite.get(0), e.health, p.sprite.get(0), p.health
@@ -35,21 +35,28 @@ public class Batalha {
             if (value.equalsIgnoreCase("a") || value.equalsIgnoreCase("Atacar")) {
                 p.givingDamage(e);
             } else if (value.equalsIgnoreCase("s") || value.equalsIgnoreCase("Especial")) {
-
+                p.special(e);
             } else if (value.equalsIgnoreCase("c") || value.equalsIgnoreCase("Comida")) {
-
+                p.setComer();
             } else if (value.equalsIgnoreCase("x") || value.equalsIgnoreCase("sair")) {
                 return;
+                
             }
             
-            System.out.printf("%n%s atacou!%n", e.raca);
-            e.givingDamage(p);
+      
+            
             if (e.health <= 0) {
-                System.out.printf("%n%s Ganhou!!%n", p.raca);
+                System.out.printf("%n%s Ganhou!!%n", p.name);
+                Comida c1 = new Comida();
+                
+                p.bolsa.add(c1);
+                
+                System.out.printf("%n:   Ganhou 1 alimentos!");
                 return;
             }
-
-            else if (p.health <= 0) {
+            e.givingDamage(p);
+            
+            if (p.health <= 0) {
                 System.out.printf("%n%s Ganhou!!%n", e.raca);
                     System.out.println("Você perdeu!!");
                 return;

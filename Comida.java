@@ -22,15 +22,15 @@ public class Comida {
         switch(num) {
             case 0:
                 this.nome = "Bolo";
-                this.cura = 15;
+                this.cura = 25;
                 this.humor = 0;
             case 1:
                 this.nome = "Batata";
-                this.cura = 10;
+                this.cura = 15;
                 this.humor = 1;
             case 2:
                 this.nome = "Feijão";
-                this.cura = 7;
+                this.cura = 10;
                 this.humor = 1;
         }
     }
