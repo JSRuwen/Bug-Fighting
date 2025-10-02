@@ -5,6 +5,7 @@
 package com.mycompany.trabalho01poo;
 
 import java.util.Scanner;
+import java.util.ArrayList;
 
 /**
  *
@@ -13,6 +14,7 @@ import java.util.Scanner;
 public class Player extends Character {
 
     Scanner scanner = new Scanner(System.in);
+    ArrayList<Comida> bolsa = new ArrayList<>();
 
     public Player() {
         //System.out.println(this.humor);
@@ -91,41 +93,60 @@ public class Player extends Character {
 //                + "                                                                          %n"
 //                + "                                                                          ")
 //;
-        
+
         System.out.printf("%n%n>`,`,`,`,`,`,`,`,`,`.´,´,´,´,´,´,´,´,´<%n"
                 + ": Parabéns, você ganhou um(a) %s!!%n"
                 + ">`,`,`,`,`,`,`,`,`,`.´,´,´,´,´,´,´,´,´<%n", this.raca);
+        Comida c1 = new Comida();
+        bolsa.add(c1);
 
     }
 
+    public Character setComer(Comida c) {
+        this.health += c.cura;
+        return this;
+    }
+
     public void getPlayerStatus() {
-        System.out.printf(
-                " %n"
-                + " %n"
-                + " ______________________________________________________ %n"
-                + "%n"
-                + "%n"
-                + "%s" //aqui vai o sprite
-                + "%n"
-                + " _______________________________________________________ %n"
-                + ":  digite sua proxima ação!                             :%n"
-                + ":                                                       :%n"
-                + ":        [a]Alimentar : [b]Brincar : [x]Sair            :%n"
-                + ":                                                       :%n"
-                + " ¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯ %n"
-                + "%n"
-                + "> ", this.sprite.get(1)
-        );
-        
-        String value = scanner.next();
-        if (value.equalsIgnoreCase("a") || value.equalsIgnoreCase("Alimentar")) {
+        while (true) {
+            System.out.printf(
+                    " %n"
+                    + " %n"
+                    + " ______________________________________________________ %n"
+                    + "%n"
+                    + "%n"
+                    + "%s" //aqui vai o sprite
+                    + "%n"
+                            + "[ HP: %d ]       [ Humor: %s ]%n"
+                    + " _______________________________________________________ %n"
+                    + ":  digite sua proxima ação!                             :%n"
+                    + ":                                                       :%n"
+                    + ":        [a]Alimentar : [b]Brincar : [x]Sair            :%n"
+                    + ":                                                       :%n"
+                    + " ¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯ %n"
+                    + "%n"
+                    + "> ", this.sprite.get(1),this.health,this.humor
+            );
 
-        } else if (value.equalsIgnoreCase("a") || value.equalsIgnoreCase("Alimentar")) {
+            String value = scanner.next();
+            if (value.equalsIgnoreCase("a") || value.equalsIgnoreCase("Alimentar")) {
+                if(bolsa.isEmpty()) {
+                    System.out.println(":   Você não tem alimentos!");
+                } else {
+                setComer(bolsa.get(0));
+                bolsa.remove(0);
+                }
+            } else if (value.equalsIgnoreCase("b") || value.equalsIgnoreCase("brincar")) {
 
-        } else if (value.equalsIgnoreCase("x") || value.equalsIgnoreCase("sair")) {
-            Main.menu(scanner, this, null);
+            } else if (value.equalsIgnoreCase("x") || value.equalsIgnoreCase("sair")) {
+                return;
+            }
         }
+    }
 
+    public String setBrincar() {
+
+        return this.humor;
     }
 
 }

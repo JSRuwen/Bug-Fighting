@@ -33,7 +33,7 @@ public class Character {
                         + "/'..''..'\\"
                 );
                 this.sprite.add("       ,_    /) (\\    _,\n"
-                        + "        >>  <<,_,>>  <<"
+                        + "        >>  <<,_,>>  <<\n"
                         + "       //   _0.-.0_   \\\\\n"
                         + "       \\'._/       \\_.'/\n"
                         + "        '-.\\.--.--./.-'\n"
@@ -119,33 +119,33 @@ public class Character {
         return this.sprite;
     }
 
-    private Character setAtributos(int num) {
-        switch (num) {
-            case 0:
-                this.maxHealth = 35;
-                this.health = this.maxHealth;
-                this.damage = 2;
-            case 1:
-                this.maxHealth = 15;
-                this.health = this.maxHealth;
-                this.damage = 8;
-            case 2:
-                this.maxHealth = 20;
-                this.health = this.maxHealth;
-                this.damage = 5;
-            case 3:
-                this.maxHealth = 30;
-                this.health = this.maxHealth;
-                this.damage = 3;
+    private Character setAtributos() {
+        if (this.raca.equalsIgnoreCase("besouro")) {
+            this.maxHealth = 35;
+            this.health = this.maxHealth;
+            this.damage = 2;
+        } else if (this.raca.equalsIgnoreCase("abelha")) {
+            this.maxHealth = 15;
+            this.health = this.maxHealth;
+            this.damage = 8;
+        } else if (this.raca.equalsIgnoreCase("borboleta")) {
+            this.maxHealth = 20;
+            this.health = this.maxHealth;
+            this.damage = 5;
+        } else if (this.raca.equalsIgnoreCase("aranha")) {
+            this.maxHealth = 30;
+            this.health = this.maxHealth;
+            this.damage = 3;
         }
+
         return this;
     }
 
     private String setRaca() {
         int numSortido = (int) (Math.random() * 4);
-        System.out.print(numSortido);
+        //System.out.print(numSortido);
         this.raca = insetos[numSortido];
-        setAtributos(numSortido);
+        setAtributos();
         spriteFunc(numSortido);
         return this.raca;
     }

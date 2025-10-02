@@ -11,7 +11,7 @@ import java.util.ArrayList;
  * @author alunodev10
  */
 public class Main {
-
+    
     /* o jogo vai ser um pokemon de insetos, é possível batalhar, curar o inseto aliado e divertir-lo
         -criar a classe "Character" e instanciar o pet e o oponente como herdeiros de character
             -criar funçãos de humor e seus efeitos no personagem
@@ -64,7 +64,7 @@ public class Main {
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-
+        
         System.out.printf(" ______________________________________________________ %n"
                 + ":                                                      :%n"
                 + ":                   BUg Fighting                       :%n"
@@ -85,7 +85,13 @@ public class Main {
             inimigos.add(inimigo1);
             inimigos.add(inimigo2);
             inimigos.add(inimigo3);
-            Main.menu(scanner, player, inimigos.getFirst());
+            //System.out.println("a: " + inimigos.size());
+            for (int i = 0; i < inimigos.size();i++) {
+                //System.out.println("a: " + inimigos.size());
+                Main.menu(scanner, player, inimigos.get(0));
+                //System.out.println("a: " + inimigos.size());
+                inimigos.remove(0);
+            }
 
         }
 
