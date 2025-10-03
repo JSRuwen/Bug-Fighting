@@ -64,7 +64,11 @@ public class Main {
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-
+        String[] dicas = {
+            "* Dica: Você pode abreviar ações pela letra dentro dos colchetes '[ ]'",
+            "* Dica: Manter seu inseto bem humorado libera o ataque especial!",
+            "* Dica: Separe o Output em uma janela para uma melhor experiência"};
+        int numSortido = (int) (Math.random() * dicas.length);
         System.out.printf(" ______________________________________________________ %n"
                 + ":                                                      :%n"
                 + ":                   BUg Fighting                       :%n"
@@ -90,6 +94,11 @@ public class Main {
             while (true) {
                 if (inimigos.get(0).health <= 0) {
                     inimigos.remove(0);
+                    if(!inimigos.isEmpty()) {
+                    Comida c1 = new Comida();
+                    player.bolsa.add(c1);
+                    System.out.printf(":   Ganhou 1 alimentos!%n");
+                    }
                 }
                 if (player.health <= 0 & !player.bolsa.isEmpty()) {
                     System.out.printf("%n:     Você prescisa curar seu pet, se não o jogo irar acabar!    ");
@@ -99,13 +108,14 @@ public class Main {
                 }
                 if (inimigos.isEmpty()) {
                     System.out.printf(
-                              "%n$$$XXXXXXXxxxxxxx=======+++++++;;;;;;;:::::::.......%n"
+                            "%n$$$XXXXXXXxxxxxxx=======+++++++;;;;;;;:::::::.......%n"
                             + ":                                %n"
                             + ":                 Você venceu!!! %n"
                             + ":                                %n"
                             + "$$$XXXXXXXxxxxxxx=======+++++++;;;;;;;:::::::.......%n");
                     break;
                 } else {
+                    System.out.println(dicas[numSortido]);
                     Main.menu(scanner, player, inimigos.get(0));
                 }
 

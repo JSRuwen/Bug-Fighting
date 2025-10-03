@@ -47,11 +47,6 @@ public class Batalha {
             
             if (e.health <= 0) {
                 System.out.printf("%n%s Ganhou!!%n", p.name);
-                Comida c1 = new Comida();
-                
-                p.bolsa.add(c1);
-                
-                System.out.printf("%n:   Ganhou 1 alimentos!");
                 return;
             }
             e.givingDamage(p);

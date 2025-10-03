@@ -96,7 +96,9 @@ public class Player extends Character {
 
         System.out.printf("%n%n>`,`,`,`,`,`,`,`,`,`.´,´,´,´,´,´,´,´,´<%n"
                 + ": Parabéns, você ganhou um(a) %s!!%n"
-                + ">`,`,`,`,`,`,`,`,`,`.´,´,´,´,´,´,´,´,´<%n", this.raca);
+                + ">`,`,`,`,`,`,`,`,`,`.´,´,´,´,´,´,´,´,´<%n"
+                + "%n"
+                + "%s%n", this.raca,this.sprite.get(1));
 
         System.out.printf(
                 "%n$$$XXXXXXXxxxxxxx=======+++++++;;;;;;;:::::::.......%n"
@@ -139,7 +141,7 @@ public class Player extends Character {
 
     public Character setComer() {
         if (bolsa.isEmpty()) {
-            System.out.println(
+            System.out.printf(
                     "%n _______________________________________________________ %n"
                     + ":                                                       :%n"
                     + ":            Você não tem mais alimentos!               :%n"
