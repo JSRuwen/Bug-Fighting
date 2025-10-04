@@ -14,18 +14,16 @@ public class Character {
 
     public ArrayList<String> sprite = new ArrayList<>();
     String[] insetos = {"Besouro", "Abelha", "Borboleta", "Aranha"};
-    String[] humorList = {"Bem", "Médio", "Ruim", "Muito Ruim"};
     String raca;
     int maxHealth = 0;
     int health = 0;
     int damage = 0;
-    String humor;
 
     protected ArrayList<String> spriteFunc(int num) {
         switch (num) {
             case 0:
                 this.sprite.add(
-                        "  !____!\n"
+                        "  (f__j)\n"
                         + "  (o  o)\n"
                         + " \\.'\\/'./\n"
                         + "-:  ::  :-\n"
@@ -44,7 +42,7 @@ public class Character {
                         + "        /\\ : : | : : /\\\n"
                         + "       (_/'.: :.: :.'\\_)\n"
                         + "        \\\\  `\"\"`\"\"`  //\n"
-                        + "    jgs  \\\\         //\n"
+                        + "         \\\\         //\n"
                         + "         ':.     .:'"
                 );
             case 1:
@@ -67,7 +65,8 @@ public class Character {
                         + "            /(       )\\\n"
                         + "          /   (%%%%%)   \\\n"
                         + "               (%%%)\n"
-                        + "                 !");
+                        + "                 !"
+                );
             case 2:
                 this.sprite.add(
                         "k\\     /j\n"
@@ -88,7 +87,8 @@ public class Character {
                         + "     dM88ttt8EM8\"MMM888ttt8MM\n"
                         + "     MM8ttt88MM\" \" \"MMNICKMM\"\n"
                         + "     3M88888MM\"      \"MMMP\"\n"
-                        + "      \"MNICKM\"");
+                        + "      \"MNICKM\""
+                );
             case 3:
                 this.sprite.add(
                         "    |\n"
@@ -109,7 +109,7 @@ public class Character {
                         + "      //           (/'==='\\)'-._\\     ||\n"
                         + "      ||                        \\\\    \\|\n"
                         + "      ||                         \\\\    '\n"
-                        + "snd   |/                          \\\\\n"
+                        + "      |/                          \\\\\n"
                         + "                                   ||\n"
                         + "                                   ||\n"
                         + "                                   \\\\\n"
@@ -120,7 +120,7 @@ public class Character {
 
     private Character setAtributos() {
         if (this.raca.equalsIgnoreCase("besouro")) {
-            this.maxHealth = 35;
+            this.maxHealth = 40;
             this.health = this.maxHealth;
             this.damage = 3;
         } else if (this.raca.equalsIgnoreCase("abelha")) {
@@ -128,7 +128,7 @@ public class Character {
             this.health = this.maxHealth;
             this.damage = 6;
         } else if (this.raca.equalsIgnoreCase("borboleta")) {
-            this.maxHealth = 15;
+            this.maxHealth = 20;
             this.health = this.maxHealth;
             this.damage = 5;
         } else if (this.raca.equalsIgnoreCase("aranha")) {
@@ -151,12 +151,10 @@ public class Character {
 
     public Character() {
         this.raca = setRaca();
-        this.humor = humorList[1];
-
     }
 
     protected int givingDamage(Character enemy) {
-        System.out.printf(":    %s Atacou!!     +%d dmg%n",this.raca,this.damage);
+        System.out.printf(":    %s Atacou!!     +%d dmg%n", this.raca, this.damage);
         enemy.gettingHurt(this.damage);
         return this.damage;
     }
@@ -165,7 +163,5 @@ public class Character {
         this.health -= dmg;
         return this.health;
     }
-
-
 
 }

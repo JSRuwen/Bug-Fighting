@@ -14,6 +14,8 @@ import java.util.ArrayList;
 public class Player extends Character {
 
     String name;
+    String[] humorList = {"Bem", "Médio", "Ruim", "Muito Ruim"};
+    String humor;
     boolean special = false;
     Scanner scanner = new Scanner(System.in);
     ArrayList<Comida> bolsa = new ArrayList<>();
@@ -47,11 +49,11 @@ public class Player extends Character {
                 System.out.printf("%n                                                                         %n"
                         + "                                                                          %n"
                         + "                                                                          %n"
-                        + "                                @@@@@@@@@@m                                  %n"
-                        + "                              @@@        @@@                                %n"
-                        + "                            @@@            @@@                              %n"
-                        + "                          @@@                @@@                            %n"
-                        + "                          @@@                  @@@                            %n"
+                        + "                                @@@@@@@@@@@m                                  %n"
+                        + "                              @@@         @@@                                %n"
+                        + "                            @@@             @@@                              %n"
+                        + "                          @@@                 @@@                            %n"
+                        + "                          @@@                 @@@                            %n"
                         + "                        @@@                     @@@                          %n"
                         + "                        @@@                     @@@                          %n"
                         + "                      @@@                         @@@                        %n"
@@ -76,9 +78,9 @@ public class Player extends Character {
                 + "                                                                          %n"
                 + "                                                                  %n"
                 + "                                                                         %n"
-                + "                                             @                              %n"
-                + "                          @                ??@@@                            %n"
-                + "                          @@@             ?    @@@                            %n"
+                + "                                             @@                             %n"
+                + "                          @                ??@@@@                           %n"
+                + "                          @@@             ?    @@                            %n"
                 + "                        @@@  ?           ?      @@@                          %n"
                 + "                        @@@   ??    ?????       @@@                          %n"
                 + "                      @@@       ? ??              @@@                        %n"
@@ -94,11 +96,14 @@ public class Player extends Character {
                 + "                                                                          %n"
                 + "                                                                          ");
 
-        System.out.printf("%n%n>`,`,`,`,`,`,`,`,`,`.´,´,´,´,´,´,´,´,´<%n"
+        System.out.printf(
+                "%n$$$XXXXXXXxxxxxxx=======+++++++;;;;;;;:::::::.......%n"
+                + ": %n"
                 + ": Parabéns, você ganhou um(a) %s!!%n"
-                + ">`,`,`,`,`,`,`,`,`,`.´,´,´,´,´,´,´,´,´<%n"
+                + ": %n"
+                + "$$$XXXXXXXxxxxxxx=======+++++++;;;;;;;:::::::.......%n"
                 + "%n"
-                + "%s%n", this.raca,this.sprite.get(1));
+                + "%s%n", this.raca, this.sprite.get(1));
 
         System.out.printf(
                 "%n$$$XXXXXXXxxxxxxx=======+++++++;;;;;;;:::::::.......%n"
@@ -110,15 +115,15 @@ public class Player extends Character {
                 + "> ");
         String nome = scanner.next();
         name = nome;
+        this.humor = humorList[1];
         Comida c1 = new Comida();
         Comida c2 = new Comida();
         bolsa.add(c1);
         bolsa.add(c2);
-   
 
     }
 
-    protected String setHumor() {
+    private String setHumor() {
         if (this.health >= this.maxHealth) {
             this.humor = humorList[0];
             this.special = true;
@@ -148,17 +153,23 @@ public class Player extends Character {
                     + ":                                                       :%n"
                     + " ¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯ %n"
                     + "%n");
+
         } else {
             int cura = bolsa.get(0).cura;
             int humor = bolsa.get(0).humor;
             this.health += cura;
 
             if (this.health > this.maxHealth) {
-                int vidaLimite = this.health;
-                this.health = vidaLimite + 5 - cura;
-            }
+                if(this.maxHealth < 20) {
+                    this.health = this.maxHealth + 8;
+                } else {
+                    this.health = this.maxHealth + 5;
+                }
+                setHumor();
+            } else 
+            if (this.humor.equals("Bem")) {
 
-            if (this.humor.equals("Médio")) {
+            } else if (this.humor.equals("Médio")) {
                 this.humor = humorList[0];
             } else if (this.humor.equals("Muito Ruim")) {
                 this.humor = humorList[2];
@@ -169,7 +180,7 @@ public class Player extends Character {
             System.out.printf(
                     "%n _______________________________________________________ %n"
                     + ":                                                       :%n"
-                    + ":        Você comeu um %s ! Faltam %d alimentos                               %n"
+                    + ":        Você comeu um(a) %s ! Faltam %d alimentos                               %n"
                     + ":                                                       :%n"
                     + " ¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯ %n"
                     + "%n", bolsa.get(0).nome, bolsa.size() - 1);
@@ -200,11 +211,15 @@ public class Player extends Character {
     public int special(Character enemy) {
         int danoAntigo = this.damage;
         if (special == true) {
-            this.damage += this.damage * 0.5;
+            this.damage += this.damage * 0.6;
+            System.out.printf(":    %s Usou o especial!!%n", name);
+            givingDamage(enemy);
+            this.damage = danoAntigo;
+        } else {
+            System.out.printf(":    Especial falhou, %s não está feliz%n", name);
+            givingDamage(enemy);
         }
-        System.out.printf(":    %s Usou o especial!!%n", name);
-        givingDamage(enemy);
-        this.damage = danoAntigo;
+
         return this.damage;
     }
 
@@ -231,8 +246,9 @@ public class Player extends Character {
                     + "%n"
                     + "%n"
                     + "%s" //aqui vai o sprite
-                    + "%n"
-                    + " %s     [ HP: %d ]       [ Humor: %s ]%n"
+                    + "%n%n"
+                    + "%s%n"
+                    + "[ HP: %d ]       [ Humor: %s ]%n"
                     + " _______________________________________________________ %n"
                     + ":  digite sua proxima ação!                             :%n"
                     + ":                                                       :%n"

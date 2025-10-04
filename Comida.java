@@ -15,24 +15,35 @@ public class Comida {
     ArrayList<Comida> comidas = new ArrayList<>();
     int cura;
     int humor;
+    String[] nomes = {"Bolo", "Batata", "Feijão", "Flor"};
     String nome;
 
-    public Comida() {
-        int num = (int) (Math.random() * 3);
-        switch(num) {
-            case 0:
-                this.nome = "Bolo";
-                this.cura = 25;
-                this.humor = 0;
-            case 1:
-                this.nome = "Batata";
-                this.cura = 15;
-                this.humor = 1;
-            case 2:
-                this.nome = "Feijão";
-                this.cura = 10;
-                this.humor = 1;
+    private Comida setAtributos() {
+        if (this.nome.equals(nomes[0])) {
+            this.cura = 25;
+            this.humor = 0;
+        } else if (this.nome.equals(nomes[1])) {
+            this.cura = 20;
+            this.humor = 0;
+        } else if (this.nome.equals(nomes[2])) {
+            this.cura = 15;
+            this.humor = 1;
+        } else if (this.nome.equals(nomes[3])) {
+            this.cura = 12;
+            this.humor = 1;
         }
+        return this;
+    }
+
+    private String sortear() {
+        int num = (int) (Math.random() * nomes.length);
+        this.nome = nomes[num];
+        setAtributos();
+        return this.nome;
+    }
+
+    public Comida() {
+        this.nome = sortear();
     }
 
 }

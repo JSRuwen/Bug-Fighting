@@ -16,6 +16,12 @@ public class Batalha {
         Scanner scanner = new Scanner(System.in);
 
         while (true) {
+            String indicador;
+            if(p.special) {
+                indicador = "*";
+            } else {
+                indicador = "º";
+            }
             System.out.printf("%n%n_______________________________________________________%n"
                     + " %n"
                     + "%s [ HP: %d ]"
@@ -26,10 +32,10 @@ public class Batalha {
                     + " _______________________________________________________ %n"
                     + ":  digite sua proxima ação!                             :%n"
                     + ":                                                       :%n"
-                    + ":    [a]Atacar : [s]Especial : [c] Comida : [x]Sair     :%n"
+                    + ":  [a]Atacar : [s]Especial %s : [c] Comida : [x]Sair     :%n"
                     + ":                                                       :%n"
                     + " ¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯ %n"
-                    + "> ", e.sprite.get(0), e.health, p.sprite.get(0), p.health
+                    + "> ", e.sprite.get(0), e.health, p.sprite.get(0), p.health, indicador
             );
             String value = scanner.next();
             if (value.equalsIgnoreCase("a") || value.equalsIgnoreCase("Atacar")) {
@@ -37,7 +43,11 @@ public class Batalha {
             } else if (value.equalsIgnoreCase("s") || value.equalsIgnoreCase("Especial")) {
                 p.special(e);
             } else if (value.equalsIgnoreCase("c") || value.equalsIgnoreCase("Comida")) {
+                int oldHealth = p.health;
                 p.setComer();
+                if(p.health == oldHealth) {
+                    continue;
+                }
             } else if (value.equalsIgnoreCase("x") || value.equalsIgnoreCase("sair")) {
                 return;
                 
